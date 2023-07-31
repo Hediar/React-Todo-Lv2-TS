@@ -47,8 +47,10 @@ function Todo() {
   const todos = useSelector<TodoState, TodoState["todos"]>(
     (todos) => todos.todos
   );
-  const foundData: any = todos.find((item) => item.id === params.id);
-  console.log(todos, foundData);
+  const foundData: TodoTypes | undefined = todos.find(
+    (item) => item.id === params.id
+  );
+  console.log(todos, "todos", foundData);
   const navigate = useNavigate();
 
   return (
@@ -60,8 +62,8 @@ function Todo() {
             <PrevButton onClick={() => navigate("/")}>이전으로</PrevButton>
           </DetailHeader>
 
-          <h1 className="detail-header">{foundData.title}</h1>
-          <main className="detail-main">{foundData.contents}</main>
+          <h1 className="detail-header">{foundData?.title}</h1>
+          <main className="detail-main">{foundData?.contents}</main>
         </div>
       </DetailBox>
     </DetailMain>
